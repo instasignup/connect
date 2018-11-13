@@ -1,0 +1,22 @@
+{
+  "name": "instasignup/connect",
+  "description": "InstaSignup connect api",
+  "type": "library",
+  "require": {
+    "php": ">=5.5",
+    "guzzlehttp/guzzle": "^5.3.3|^6.2.1"
+  },
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "San Kumar",
+      "email": "support@instasignup.com"
+    }
+  ],
+  "autoload": {
+    "files": [
+      "src/instasignup.php"
+    ]
+  },
+  "minimum-stability": "dev"
+}
