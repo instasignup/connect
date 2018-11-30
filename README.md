@@ -4,335 +4,228 @@ Just run `composer install [package_name]`
 
 After that all these functions should be available in every PHP file (via composer's autoloader)
 
-- [handle_cors_request](#handle_cors_request)
+- [is_user](#is_user)
 
-- [get_domain](#get_domain)
+- [is_user_id](#is_user_id)
 
-- [get_http_method](#get_http_method)
+- [is_user_projects](#is_user_projects)
 
-- [check_http_method](#check_http_method)
+- [is_user_subscriptions](#is_user_subscriptions)
 
-- [handle_upload](#handle_upload)
+- [is_user_project](#is_user_project)
 
-- [handle_json_request](#handle_json_request)
+- [is_users](#is_users)
 
-- [config](#config)
+- [is_user_create](#is_user_create)
 
-- [url](#url)
+- [is_user_read](#is_user_read)
 
-- [auth_url](#auth_url)
+- [is_user_update](#is_user_update)
 
-- [is_ajax_request](#is_ajax_request)
+- [is_user_delete](#is_user_delete)
 
-- [login_redir](#login_redir)
+- [is_projects](#is_projects)
 
-- [abort](#abort)
+- [is_project_create](#is_project_create)
 
-- [redirect](#redirect)
+- [is_project_read](#is_project_read)
 
-- [request](#request)
+- [is_project_update](#is_project_update)
 
-- [request_keys](#request_keys)
+- [is_project_delete](#is_project_delete)
 
-- [add_route](#add_route)
+- [is_subscriptions](#is_subscriptions)
 
-- [router](#router)
+- [is_subscription_create](#is_subscription_create)
 
-- [jwt_cookie_name](#jwt_cookie_name)
+- [is_subscription_read](#is_subscription_read)
 
-- [user](#user)
+- [is_subscription_delete](#is_subscription_delete)
 
-- [user_id](#user_id)
+- [_is_request](#_is_request)
 
-- [check_login](#check_login)
+### is_user
 
-- [site_set_cookie](#site_set_cookie)
-
-- [user_login](#user_login)
-
-- [user_logout](#user_logout)
-
-- [user_activity_find](#user_activity_find)
-
-- [user_activity_insert](#user_activity_insert)
-
-- [user_info_public](#user_info_public)
-
-- [guest_id](#guest_id)
-
-- [check_captcha](#check_captcha)
-
-- [bootstrap](#bootstrap)
-
-### handle_cors_request
-
-Handles a CORS request
+Gets the logged-in user
 
 ```php
-function handle_cors_request($extra = [])
+function is_user()
 ```
 
 
-### get_domain
+### is_user_id
 
-Returns domain of the app
+Gets the user_id of logged-in user
 
 ```php
-function get_domain()
+function is_user_id()
 ```
 
 
-### get_http_method
+### is_user_projects
 
-Returns the HTTP method
+Returns all projects of logged-in user
 
 ```php
-function get_http_method($allowed = ['get', 'post', 'options'])
+function is_user_projects()
 ```
 
 
-### check_http_method
+### is_user_subscriptions
 
-Returns the HTTP method
+Returns all subscriptions of logged-in user
 
 ```php
-function check_http_method(...$allowed)
+function is_user_subscriptions($plan)
 ```
 
 
-### handle_upload
+### is_user_project
 
-Handles a file upload
+Returns details of a user project by id or name
 
 ```php
-function handle_upload($names = NULL, $destDir = NULL, $allowedExt = NULL)
+function is_user_project($value, $key = 'name')
 ```
 
 
-### handle_json_request
+### is_users
 
-Process PHP json request
+Returns list of all users in your site
 
 ```php
-function handle_json_request()
+function is_users($filters = [])
 ```
 
 
-### config
+### is_user_create
 
-Gets value from config file
+Creates a new user
 
 ```php
-function config($name, $default)
+function is_user_create($data)
 ```
 
 
-### url
+### is_user_read
 
-Creates a URL for current app
+Reads a user
+ Key values: id, email, username, or phone
 
 ```php
-function url($url, $params = [])
+function is_user_read($value, $key = 'id')
 ```
 
 
-### auth_url
+### is_user_update
 
-Creates a pre-authenticated url
+Updates a user
+ Key values: id, email, username, or phone
 
 ```php
-function auth_url($url, $user_id, $activity = 'link_click', $data = [])
+function is_user_update($value, $key = 'id')
 ```
 
 
-### is_ajax_request
+### is_user_delete
 
-Check if it is a ajax request
+Deletes a user
+ Key values: id, email, username, or phone
 
 ```php
-function is_ajax_request()
+function is_user_delete($value, $key = 'id')
 ```
 
 
-### login_redir
+### is_projects
 
-Redirect to login page with error
+Returns list of all projects in your site
 
 ```php
-function login_redir($message = '')
+function is_projects($filters = [])
 ```
 
 
-### abort
+### is_project_create
 
-Aborts a request with 403 error code
+Creates a new project
 
 ```php
-function abort($message = '', $code = 403)
+function is_project_create($name, $data, $user_id = 0)
 ```
 
 
-### redirect
+### is_project_read
 
-Redirect to another url
+Reads a project
 
 ```php
-function redirect($location, $code = 302, $message = NULL)
+function is_project_read($value, $key = 'id')
 ```
 
 
-### request
+### is_project_update
 
-Returns a request param
-
- @return string|array
+Updates a project
 
 ```php
-function request($name = NULL, $default = NULL)
+function is_project_update($value, $key = 'id')
 ```
 
 
-### request_keys
+### is_project_delete
 
-Extracts all the keys from request (returns false if any key is missing)
+Deletes a project
 
 ```php
-function request_keys(...$keys)
+function is_project_delete($value, $key = 'id')
 ```
 
 
-### add_route
+### is_subscriptions
 
-Adds a route for router
+Returns list of all subscriptions in your site
 
 ```php
-function add_route(string $path, $action, $method = '', $auth = FALSE)
+function is_subscriptions($filters = [])
 ```
 
 
-### router
+### is_subscription_create
 
-Simplest PHP router
+Creates a new subscription
 
 ```php
-function router()
+function is_subscription_create($user_id, $plan)
 ```
 
 
-### jwt_cookie_name
+### is_subscription_read
 
-Returns the name of the JWT COOKIE
+Reads a subscription
 
 ```php
-function jwt_cookie_name()
+function is_subscription_read($user_id, $plan)
 ```
 
 
-### user
+### is_subscription_delete
 
-Get logged in user
+Deletes a subscription
 
 ```php
-function user($key = '', $default = NULL, $jwt_key = NULL)
+function is_subscription_delete($user_id, $plan)
 ```
 
 
-### user_id
+### _is_request
 
-Logged in user's id
+@internal
 
-```php
-function user_id()
-```
-
-
-### check_login
-
-Checks if the user is logged-in (returns user_id) otherwise aborts
+ create http request to IS server
 
 ```php
-function check_login()
-```
-
-
-### site_set_cookie
-
-Sets a global cookie
-
-```php
-function site_set_cookie($name, $value, $expires = 0)
-```
-
-
-### user_login
-
-Log in a user by starting session
-
-```php
-function user_login($user, $expires = 86400, $key = '')
-```
-
-
-### user_logout
-
-Logs out existing user
-
-```php
-function user_logout()
-```
-
-
-### user_activity_find
-
-Find a activity by name (or creates it)
-
-```php
-function user_activity_find($activity_name)
-```
-
-
-### user_activity_insert
-
-Insert a user activity into user activity table
-
-```php
-function user_activity_insert($activity_name, $user_id = NULL)
-```
-
-
-### user_info_public
-
-All publicly accessible user info
-
-```php
-function user_info_public($user = NULL)
-```
-
-
-### guest_id
-
-Checks if the user is authenticated in guest mode and if so returns the user_id (false otherwise)
-
-```php
-function guest_id($jwt_key = NULL)
-```
-
-
-### check_captcha
-
-Checks if there is a need to verify captcha
-
-```php
-function check_captcha()
-```
-
-
-### bootstrap
-
-Handles setting up environment for handling http requests
-
-```php
-function bootstrap($env)
+function _is_request($url, $payload, $method = 'POST')
 ```
 
 
